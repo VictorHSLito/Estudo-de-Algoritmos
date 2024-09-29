@@ -37,7 +37,7 @@ Se somarmos o número de interações que esse algoritmo faz, chegaremos na segu
 ## [Selection Sort](https://github.com/VictorHSLito/Estudo-de-Algoritmos/blob/main/Algoritmos/SelectionSort.c)
 A ordenação do Selection Sort é feita através de comparações entre os elementos, buscando entre eles o maior ou menor valor, dependendo de como foi implementado. Esse processo se repete ao longo do programa até que todo o conjunto de dados esteja ordenado. Implementação do algorito que ordena de forma crescente: 
 ```
-void selectionSort(int vetor[], TAM) {
+void selectionSort(int vetor[], int TAM) {
     int menor, aux;
     for (int i = 0; i < TAM - 1; i++) {
         menor = i;
@@ -63,4 +63,21 @@ Perceba também que apesar desse algoritmo ter uma comparação a menos também 
 | Selection Sort   | O(n²)              | O(n²)                  |
 
 ## [Insertion Sort](https://github.com/VictorHSLito/Estudo-de-Algoritmos/blob/main/Algoritmos/InsertionSort.c)
-O Insertion Sort funciona como se fossem cartas de baralhos sendo ordenadas na mesa, pois o que esse algoritmo faz nada menos é do que passar por cada um dos elementos do vetor, um de cada vez, e compara o elemento atual com os elementos da parte já ordenada do vetor. Em seguida, o elemento é inserido em sua posição correta, movendo os elementos maiores para a direita ou menores para esquerda.
+O Insertion Sort funciona como se fossem cartas de baralhos sendo ordenadas na mesa, pois o que esse algoritmo faz nada menos é do que passar por cada um dos elementos do vetor, um de cada vez, e compara o elemento atual com os elementos da parte já ordenada do vetor. Em seguida, o elemento é inserido em sua posição correta, movendo os elementos maiores para a direita ou menores para esquerda. Implementação do algoritmo: 
+```
+void insertionSort(int vetor[], int TAM) {
+    int i, j;
+    for (i = 1; i < TAM; i++) {
+        int aux = vetor[i];
+        for (j = i - 1; j >= 0 && aux < vetor[j]; j--) {
+            vetor[j+1] = vetor[j];
+        }
+        vetor[j+1] = aux;
+    }
+}
+```
+Perceba que esse algoritmo também realiza (N*(N-1))/2 interações, sendo assim mais um algoritmo de ordem quadrática, logo ele também possui os mesmos valores para Big O dos outros dois algoritmos apresentados anteriormente.
+
+| Algoritmo     | Complexidade Média | Complexidade Pior Caso |
+| ------------- | ------------------ | ---------------------- |
+| Insertoin Sort   | O(n²)              | O(n²)                  |
