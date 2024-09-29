@@ -3,7 +3,7 @@
 
 #define TAM 6
 
-int *selectionSort(int vetor[]) {
+int *selectionSortC(int vetor[]) {
     int menor, aux;
     for (int i = 0; i < TAM - 1; i++) {
         menor = i; // Começa assumindo que o menor é o próprio 'i'
@@ -17,6 +17,25 @@ int *selectionSort(int vetor[]) {
             aux = vetor[i];
             vetor[i] = vetor[menor];
             vetor[menor] = aux;
+        }
+    }
+    return vetor;
+}
+
+int *selectionSortD(int vetor[]) {
+    int maior, aux;
+    for (int i = 0; i < TAM - 1; i++) {
+        maior = i; // Começa assumindo que o maior é o próprio 'i'
+        for (int j = i + 1; j < TAM; j++) { // Busca o maior na parte não ordenada
+            if (vetor[maior] < vetor[j]) {
+                maior = j; // Atualiza o índice do maior elemento
+            }
+        }
+        // Faz a troca do maior elemento encontrado com o elemento atual 'i'
+        if (maior != i) {
+            aux = vetor[i];
+            vetor[i] = vetor[maior];
+            vetor[maior] = aux;
         }
     }
     return vetor;
@@ -37,9 +56,17 @@ int main() {
        printf("%d ", *(p+i));
     }
 
-    p = selectionSort(p);
+    p = selectionSortC(p);
 
-    printf("\nVetor ordenado: ");
+    printf("\nVetor ordenado de forma crescente:\n");
+    for (int i = 0; i < TAM; i++)
+    {
+       printf("%d ", *(p+i));
+    }
+
+    p = selectionSortD(p);
+
+    printf("\nVetor ordenado de forma decrescente:\n");
     for (int i = 0; i < TAM; i++)
     {
        printf("%d ", *(p+i));
